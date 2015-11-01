@@ -25,9 +25,9 @@ public class Card {
 		this.shading = shading;
 	}
 
-	public String printCard() {
-		String encoding = number.toString() + shape.toString() + number.toString()
-				+ shading.toString();
-		return encoding;
+	public void printCard() {
+		String encoding= number.toString() + shape.toString() + number.toString()
+				+ shading.toString()+" ";
+		System.out.print(encoding);
 	}
 }

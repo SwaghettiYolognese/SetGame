@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.LinkedHashSet;
 import java.util.PriorityQueue;
 
@@ -33,6 +34,7 @@ public class Referee {
 						&& (card2.getColor() != card3.getColor()))) {
 			return false;
 		}
+		this.remainingSets=remainingSets+1;
 		return true;
 	}
 
@@ -43,26 +45,28 @@ public class Referee {
 		for (int i = 0; i < cardCount; i++) {
 			for (int j = 0; j < cardCount; j++) {
 				for (int k = 0; k < cardCount; k++) {
-					if (isSet(cardList.get(i), cardList.get(j), cardList.get(k)) && i != j && j != k && i != k) {
-						possibleSet.add(i);
-						possibleSet.add(j);
-						possibleSet.add(k);
+					if (i != j && j != k && i != k) {
+						if (isSet(cardList.get(i), cardList.get(j), cardList.get(k))) {
+							possibleSet.add(i);
+							possibleSet.add(j);
+							possibleSet.add(k);
+							allSets.add(possibleSet);
+							possibleSet.clear();
+						}
 					}
-					allSets.add(possibleSet);
 				}
 			}
 		}
-		this.remainingSets = allSets.size();
 		this.allSets = allSets;
 	}
 
-	public boolean doesSetExists(PriorityQueue<Integer> possibleSet){
-		if(allSets.contains(possibleSet)){
+	public boolean doesSetExists(PriorityQueue<Integer> possibleSet) {
+		if (allSets.contains(possibleSet)) {
 			allSets.remove(possibleSet);
 			decreaseRemainingSets();
 			return true;
 		}
-			return false;
+		return false;
 	}
 
 	public int getRemainingSets() {

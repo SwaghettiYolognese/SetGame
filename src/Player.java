@@ -8,12 +8,9 @@ public class Player {
 
 	public void determineName() {
 		Scanner scan = new Scanner(System.in);
-		try {
-			String name = scan.next();
-			this.name = name;
-		} finally {
-			scan.close();
-		}
+		System.out.print("Enter name:");
+		String name = scan.next();
+		this.name = name;
 	}
 
 	public String getName() {
@@ -27,7 +24,7 @@ public class Player {
 			switch (input) {
 			case "s":
 				System.out.println("\nChoose 3 Cards:");
-				PriorityQueue<Integer> chosenCards=new PriorityQueue<Integer>();
+				PriorityQueue<Integer> chosenCards = new PriorityQueue<Integer>();
 				for (int i = 0; i < 3; i++) {
 					chosenCards.add(scan.nextInt());
 				}
