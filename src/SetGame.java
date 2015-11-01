@@ -1,4 +1,6 @@
 import java.util.ArrayList;
+import java.util.PriorityQueue;
+import java.util.Scanner;
 
 public class SetGame {
 	// main class of playing the game,attributes,one referee, one layout,2
@@ -36,11 +38,9 @@ public class SetGame {
 		System.out.println("RemainingSets:" + ref.getRemainingSets());
 		layout.printLayout(cardsInPlay);
 		Player currentPlayer;
-
+		clock.startTimer();
 		while (ref.getRemainingSets() > 0) {
 			while (clock.getTurn()) {
-				// Start counter
-				clock.startTimer();
 				// Assigns the current player according to the clock
 				if (clock.getTurn()) {
 					currentPlayer = p1;
@@ -49,8 +49,16 @@ public class SetGame {
 				}
 				// we check if current player has given an answer and its
 				// correctness
-				if (currentPlayer.play() != null && ref.doesSetExists(currentPlayer.play())) {
-					scoreboard.update(clock.getTurn());
+				// Start counter
+				
+				System.out.print(currentPlayer.getName().toUpperCase() + "'s TURN");
+
+				Scanner scan = new Scanner(System.in);
+				String input = scan.next();
+				switch (input) {
+				case "s":
+					currentPlayer.play();
+					break;
 				}
 			}
 		}

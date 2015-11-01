@@ -7,7 +7,7 @@ public class Clock extends TimerTask {
 
 	public void run() {
 		turnValue = !turnValue;
-		System.out.print("Turn");
+		System.out.print(turnValue);
 	}
 
 	public boolean getTurn() {
@@ -15,6 +15,6 @@ public class Clock extends TimerTask {
 	}
 	public void startTimer(){
 		Timer timer = new Timer();
-		timer.schedule(new Clock(), 0, 10000);
+		timer.schedule(new Clock(), 0, 15000);
 	}
 }
