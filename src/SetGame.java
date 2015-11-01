@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.PriorityQueue;
 import java.util.Scanner;
 
 public class SetGame {
@@ -19,6 +18,7 @@ public class SetGame {
 		this.players = new ArrayList<Player>();
 		this.deck = new Deck();
 		this.clock = new Clock();
+		this.scoreboard= new Score();
 	}
 
 	public void playSetGame() {
@@ -34,34 +34,49 @@ public class SetGame {
 		p1.determineName();
 		p2.determineName();
 		// initializing the layout
-		System.out.println("<<<<" + p1.getName().toUpperCase() + " VS " + p2.getName().toUpperCase() + ">>>>");
-		System.out.println("RemainingSets:" + ref.getRemainingSets());
+		System.out.println("\n<<<<" + p1.getName().toUpperCase() + " VS " + p2.getName().toUpperCase() + ">>>>\n");
 		layout.printLayout(cardsInPlay);
-		Player currentPlayer;
-		clock.startTimer();
-		while (ref.getRemainingSets() > 0) {
-			while (clock.getTurn()) {
-				// Assigns the current player according to the clock
-				if (clock.getTurn()) {
-					currentPlayer = p1;
-				} else {
-					currentPlayer = p2;
-				}
-				// we check if current player has given an answer and its
-				// correctness
-				// Start counter
-				
-				System.out.print(currentPlayer.getName().toUpperCase() + "'s TURN");
+		System.out.println( ref.getRemainingSets()+" SETS to find.\n");
+		Player currentPlayer = p1;
+		clock.startTimer(clock);
 
-				Scanner scan = new Scanner(System.in);
-				String input = scan.next();
-				switch (input) {
-				case "s":
-					currentPlayer.play();
-					break;
+		while (ref.getRemainingSets() > 0) {
+			
+			
+
+			Scanner scan = new Scanner(System.in);
+			System.out.print("\nPress S to enter a SET!// D to display Score!\n");
+			String input = scan.nextLine();
+
+			switch (input) {
+			case "s":
+				// Assigns the current player according to the clock
+					boolean turn=clock.getTurn();
+				if (turn == true)
+					currentPlayer = p1;
+				else
+					currentPlayer = p2;
+				
+				System.out.print(currentPlayer.getName().toUpperCase() + "'s Cards are:\n");
+				currentPlayer.play();
+				if(ref.doesSetExists(currentPlayer.getChosenCards())){
+					scoreboard.update(turn);
 				}
+				else{
+					System.out.print("Not a valid SET.\n");
+				}
+			case "d":
+				scoreboard.displayScore();
 			}
 		}
+		clock.cancel();
+		boolean winner =scoreboard.determineWinner();
+		if(winner)
+			System.out.print(p1.getName());
+		else
+			System.out.print(p2.getName());
+			System.out.println( "is the WINNER!!!!!");
+			
 	}
 
 	public static void main(String[] args) {

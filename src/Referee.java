@@ -1,7 +1,5 @@
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.LinkedHashSet;
-import java.util.PriorityQueue;
 
 public class Referee {
 	// checks whos turn is it,the given set is true,how many sets left,check
@@ -10,7 +8,7 @@ public class Referee {
 	// sets,attribute of cards in play possible sets,has a tmer attribute,whos
 	// turn attribute
 	private int remainingSets = 0;
-	private LinkedHashSet<PriorityQueue<Integer>> allSets;
+	private LinkedHashSet<LinkedHashSet<Integer>> allSets;
 
 	public boolean isSet(Card card1, Card card2, Card card3) {
 
@@ -34,14 +32,13 @@ public class Referee {
 						&& (card2.getColor() != card3.getColor()))) {
 			return false;
 		}
-		this.remainingSets=remainingSets+1;
 		return true;
 	}
 
 	public void findAllSets(ArrayList<Card> cardList) {
 		int cardCount = cardList.size();
-		LinkedHashSet<PriorityQueue<Integer>> allSets = new LinkedHashSet<PriorityQueue<Integer>>();
-		PriorityQueue<Integer> possibleSet = new PriorityQueue<Integer>();
+		LinkedHashSet<LinkedHashSet<Integer>> allSets = new LinkedHashSet<LinkedHashSet<Integer>>();
+		LinkedHashSet<Integer> possibleSet = new LinkedHashSet<Integer>();
 		for (int i = 0; i < cardCount; i++) {
 			for (int j = 0; j < cardCount; j++) {
 				for (int k = 0; k < cardCount; k++) {
@@ -51,16 +48,17 @@ public class Referee {
 							possibleSet.add(j);
 							possibleSet.add(k);
 							allSets.add(possibleSet);
-							possibleSet.clear();
+							possibleSet = new LinkedHashSet<Integer>();
 						}
 					}
 				}
 			}
 		}
+		remainingSets = allSets.size();
 		this.allSets = allSets;
 	}
 
-	public boolean doesSetExists(PriorityQueue<Integer> possibleSet) {
+	public boolean doesSetExists(LinkedHashSet<Integer> possibleSet) {
 		if (allSets.contains(possibleSet)) {
 			allSets.remove(possibleSet);
 			decreaseRemainingSets();

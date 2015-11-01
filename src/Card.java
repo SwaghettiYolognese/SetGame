@@ -1,6 +1,6 @@
 
 public class Card {
-	// print card,attributes symbol shape blabla
+	// card attributes
 	private Integer color;
 	private Integer shape;
 	private Integer number;
@@ -26,7 +26,7 @@ public class Card {
 	}
 
 	public void printCard() {
-		String encoding= number.toString() + shape.toString() + number.toString()
+		String encoding= color.toString() + shape.toString() + number.toString()
 				+ shading.toString()+" ";
 		System.out.print(encoding);
 	}

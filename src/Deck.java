@@ -3,6 +3,7 @@ import java.util.ArrayList;
 public class Deck {
 	// holds deck of 81,has a method of giving 12 random cards
 	private ArrayList<Card> allCards;
+
 	// creates a random deck
 	public Deck() {
 		ArrayList<Card> allCards = new ArrayList<Card>();
@@ -14,7 +15,6 @@ public class Deck {
 					}
 				}
 			}
-
 		}
 		// shuffling the deck order
 		java.util.Collections.shuffle(allCards);

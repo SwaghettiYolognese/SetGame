@@ -18,4 +18,15 @@ public class Score {
 		else
 			this.scoreOfP2 = this.scoreOfP2 + 1;
 	}
+
+	public void displayScore() {
+		System.out.print("P1" + " : " + scoreOfP1 + " P2" + " : " + scoreOfP2+"\n");
+	}
+
+	public boolean determineWinner() {
+		if (scoreOfP1 > scoreOfP2)
+			return true;
+		else
+			return false;
+	}
 }
