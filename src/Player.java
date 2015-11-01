@@ -1,3 +1,4 @@
+import java.util.PriorityQueue;
 import java.util.Scanner;
 
 public class Player {
@@ -15,21 +16,20 @@ public class Player {
 		}
 	}
 
-	public void printName() {
-		System.out.println(name);
+	public String getName() {
+		return name;
 	}
 
-	public int[] play() {
+	public PriorityQueue<Integer> play() {
 		Scanner scan = new Scanner(System.in);
 		try {
 			String input = scan.next();
 			switch (input) {
 			case "s":
 				System.out.println("\nChoose 3 Cards:");
-				int[] chosenCards;
-				chosenCards = new int[3];
+				PriorityQueue<Integer> chosenCards=new PriorityQueue<Integer>();
 				for (int i = 0; i < 3; i++) {
-					chosenCards[i] = scan.nextInt();
+					chosenCards.add(scan.nextInt());
 				}
 				return chosenCards;
 			}

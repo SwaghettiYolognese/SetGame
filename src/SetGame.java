@@ -22,13 +22,36 @@ public class SetGame {
 		// initializing the game
 		System.out.println("Welcome to SetGame!!!\n");
 		cardsInPlay = deck.give12Cards();
+		ref.findAllSets(cardsInPlay);
+		// initializing players
+		Player p1 = players.get(0);
+		Player p2 = players.get(1);
+		p1.determineName();
+		p2.determineName();
+		// initializing the layout
+		System.out.println(p1.getName() + "VS" + p2.getName());
+		System.out.println("RemainingSets" + ref.getRemainingSets());
 		layout.printLayout(cardsInPlay);
-		while () {
-			if (clock.getTurn()) {
-				players.get(0).play();
-			} else {
-				players.get(1).play();
+		Player currentPlayer;
+
+		while (ref.getRemainingSets() > 0) {
+			while (!clock.isEndTurn()) {
+				// Start counter
+				clock.reset();
+				clock.run();
+				// Assigns the current player according to the clock
+				if (clock.getTurn()) {
+					currentPlayer = p1;
+				} else {
+					currentPlayer = p2;
+				}
+				// we check if current player has given an answer and its
+				// correctness
+				if (currentPlayer.play() != null && ref.doesSetExists(currentPlayer.play())) {
+					scoreboard.update(clock.getTurn());
+				}
 			}
+			clock.alternateTurn();
 		}
 	}
 }

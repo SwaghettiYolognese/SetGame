@@ -8,8 +8,8 @@ public class Referee {
 	// sets),Announce winner when sets are over or someone gets more
 	// sets,attribute of cards in play possible sets,has a tmer attribute,whos
 	// turn attribute
-	private boolean turn = false;
-	private int remainingSets; 
+	private int remainingSets = 0;
+	private LinkedHashSet<PriorityQueue<Integer>> allSets;
 
 	public boolean isSet(Card card1, Card card2, Card card3) {
 
@@ -36,9 +36,7 @@ public class Referee {
 		return true;
 	}
 
-	
-
-	public int findAllSets(ArrayList<Card> cardList) {
+	public void findAllSets(ArrayList<Card> cardList) {
 		int cardCount = cardList.size();
 		LinkedHashSet<PriorityQueue<Integer>> allSets = new LinkedHashSet<PriorityQueue<Integer>>();
 		PriorityQueue<Integer> possibleSet = new PriorityQueue<Integer>();
@@ -54,15 +52,25 @@ public class Referee {
 				}
 			}
 		}
-		return allSets.size();
+		this.remainingSets = allSets.size();
+		this.allSets = allSets;
+	}
+
+	public boolean doesSetExists(PriorityQueue<Integer> possibleSet){
+		if(allSets.contains(possibleSet)){
+			allSets.remove(possibleSet);
+			decreaseRemainingSets();
+			return true;
+		}
+			return false;
 	}
 
 	public int getRemainingSets() {
 		return remainingSets;
 	}
 
-	public void setRemainingSets(int remainingSets) {
-		this.remainingSets = remainingSets;
+	public void decreaseRemainingSets() {
+		this.remainingSets = remainingSets - 1;
 	}
 
 }

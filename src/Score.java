@@ -12,12 +12,10 @@ public class Score {
 		return scoreOfP2;
 	}
 
-	public void addScoretoP1() {
-		this.scoreOfP1 = this.scoreOfP1 + 1;
+	public void update(boolean player) {
+		if (player)
+			this.scoreOfP1 = this.scoreOfP1 + 1;
+		else
+			this.scoreOfP2 = this.scoreOfP2 + 1;
 	}
-
-	public void addScoretoP2() {
-		this.scoreOfP2 = this.scoreOfP2 + 1;
-	}
-
 }
