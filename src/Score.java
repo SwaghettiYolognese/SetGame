@@ -1,4 +1,3 @@
-
 public class Score {
 	// holds the score of the game,2 attributes as score of players
 	private int scoreOfP1 = 0;
@@ -20,7 +19,8 @@ public class Score {
 	}
 
 	public void displayScore() {
-		System.out.print("P1" + " : " + scoreOfP1 + " P2" + " : " + scoreOfP2+"\n");
+		System.out.print("P1" + " : " + scoreOfP1 + " P2" + " : " + scoreOfP2
+				+ "\n");
 	}
 
 	public boolean determineWinner() {

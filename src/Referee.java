@@ -12,24 +12,32 @@ public class Referee {
 
 	public boolean isSet(Card card1, Card card2, Card card3) {
 
-		if (!((card1.getNumber() == card2.getNumber()) && (card2.getNumber() == card3.getNumber())
-				|| (card1.getNumber() != card2.getNumber()) && (card1.getNumber() != card3.getNumber())
-						&& (card2.getNumber() != card3.getNumber()))) {
+		if (!((card1.getNumber() == card2.getNumber())
+				&& (card2.getNumber() == card3.getNumber()) || (card1
+				.getNumber() != card2.getNumber())
+				&& (card1.getNumber() != card3.getNumber())
+				&& (card2.getNumber() != card3.getNumber()))) {
 			return false;
 		}
-		if (!((card1.getShape() == card2.getShape()) && (card2.getShape() == card3.getShape())
-				|| (card1.getShape() != card2.getShape()) && (card1.getShape() != card3.getShape())
-						&& (card2.getShape() != card3.getShape()))) {
+		if (!((card1.getShape() == card2.getShape())
+				&& (card2.getShape() == card3.getShape()) || (card1.getShape() != card2
+				.getShape())
+				&& (card1.getShape() != card3.getShape())
+				&& (card2.getShape() != card3.getShape()))) {
 			return false;
 		}
-		if (!((card1.getShading() == card2.getShading()) && (card2.getShading() == card3.getShading())
-				|| (card1.getShading() != card2.getShading()) && (card1.getShading() != card3.getShading())
-						&& (card2.getShading() != card3.getShading()))) {
+		if (!((card1.getShading() == card2.getShading())
+				&& (card2.getShading() == card3.getShading()) || (card1
+				.getShading() != card2.getShading())
+				&& (card1.getShading() != card3.getShading())
+				&& (card2.getShading() != card3.getShading()))) {
 			return false;
 		}
-		if (!((card1.getColor() == card2.getColor()) && (card2.getColor() == card3.getColor())
-				|| (card1.getColor() != card2.getColor()) && (card1.getColor() != card3.getColor())
-						&& (card2.getColor() != card3.getColor()))) {
+		if (!((card1.getColor() == card2.getColor())
+				&& (card2.getColor() == card3.getColor()) || (card1.getColor() != card2
+				.getColor())
+				&& (card1.getColor() != card3.getColor())
+				&& (card2.getColor() != card3.getColor()))) {
 			return false;
 		}
 		return true;
@@ -43,7 +51,8 @@ public class Referee {
 			for (int j = 0; j < cardCount; j++) {
 				for (int k = 0; k < cardCount; k++) {
 					if (i != j && j != k && i != k) {
-						if (isSet(cardList.get(i), cardList.get(j), cardList.get(k))) {
+						if (isSet(cardList.get(i), cardList.get(j),
+								cardList.get(k))) {
 							possibleSet.add(i);
 							possibleSet.add(j);
 							possibleSet.add(k);

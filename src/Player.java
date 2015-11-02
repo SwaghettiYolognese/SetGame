@@ -2,8 +2,7 @@ import java.util.LinkedHashSet;
 import java.util.Scanner;
 
 public class Player {
-	// gives input to user,takes the set input from user,gives name,attributes
-	// are name
+//human players ofthe game
 	private String name;
 	private LinkedHashSet<Integer> chosenCards;
 

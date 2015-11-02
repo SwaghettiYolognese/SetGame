@@ -1,4 +1,3 @@
-
 public class Card {
 	// card attributes
 	private Integer color;
@@ -9,15 +8,19 @@ public class Card {
 	public int getColor() {
 		return color.intValue();
 	}
+
 	public int getShape() {
 		return shape.intValue();
 	}
+
 	public int getNumber() {
 		return number.intValue();
 	}
+
 	public int getShading() {
 		return shading.intValue();
 	}
+
 	public Card(int color, int shape, int number, int shading) {
 		this.color = color;
 		this.shape = shape;
@@ -26,8 +29,8 @@ public class Card {
 	}
 
 	public void printCard() {
-		String encoding= color.toString() + shape.toString() + number.toString()
-				+ shading.toString()+" ";
+		String encoding = color.toString() + shape.toString()
+				+ number.toString() + shading.toString() + " ";
 		System.out.print(encoding);
 	}
 }
